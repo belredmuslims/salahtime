@@ -12,7 +12,7 @@ var dataCache;
 var configObj = {};
 
 $(document).ready(function () {
-	var configValue = ReadConfig();
+	ReadConfig();
 	SetNamazTimings();
 	setInterval(function () {
 		SetHadees();
@@ -37,7 +37,7 @@ $(document).ready(function () {
 		if (0 == hours && new Date().getMinutes() == 0 && new Date().getSeconds() <= 1) {
 			SetNamazTimings();
 			SetIslamicHijriDate();
-			if (configValue.Quran == 1) {
+			if (configObj.Quran == 1) {
 				SetQuranAyah();
 			}
 		}
@@ -78,17 +78,14 @@ $(document).ready(function () {
 			$("#dhuhrValue").html(dataCache.dhuhr);
 		}
 
-
 		nmzTxt = $("#asrValue").text();
 		hoursMinutesArr = nmzTxt.split(":");
 		calculatedHours = parseInt(hoursMinutesArr[1]) + 8;
 		if (calculatedHours >= 60) calculatedHours = calculatedHours - 60;
 		if ((parseInt(hoursMinutesArr[0]) + 12 == hours) && (calculatedHours == minutes) && (nmzTxt != dataCache.asr)) {
-			$("#asrValueAdhan").html(dataCache.asrBegin);
-			$("#asrValueAdhanHanafi").html(dataCache.asrBeginHanafi);
+			$("#asrValueAdhan").html(configObj.Hanafi ? dataCache.asrBeginHanafi : dataCache.asrBegin);
 			$("#asrValue").html(dataCache.asr);
 		}
-
 
 		nmzTxt = $("#maghribValue").text();
 		hoursMinutesArr = nmzTxt.split(":");
@@ -113,17 +110,22 @@ $(document).ready(function () {
 
 	function Update(item) {
 		$("#fajrValueAdhan").html(item.fajrBegin);
-		$("#shuruqValueAdhan").html(item.shuruq);
-		$("#dhuhrValueAdhan").html(item.dhuhrBegin);
-		$("#asrValueAdhan").html(item.asrBegin);
-		$("#asrValueAdhanHanafi").html(item.asrBeginHanafi);
-		$("#maghribValueAdhan").html(item.maghribBegin);
-		$("#sunsetValue").html(item.maghribBegin);
-		$("#ishaValueAdhan").html(item.ishaBegin);
 		$("#fajrValue").html(item.fajr);
+
+		$("#shuruqValueAdhan").html(item.shuruq);
+
+		$("#dhuhrValueAdhan").html(item.dhuhrBegin);
 		$("#dhuhrValue").html(item.dhuhr);
+
+		$("#asrValueAdhan").html(configObj.Hanafi ? item.asrBeginHanafi : item.asrBegin);
 		$("#asrValue").html(item.asr);
+
+		$("#maghribValueAdhan").html(item.maghribBegin);
 		$("#maghribValue").html(item.maghrib);
+
+		$("#sunsetValue").html(item.maghribBegin);
+		
+		$("#ishaValueAdhan").html(item.ishaBegin);
 		$("#ishaValue").html(item.isha);
 	}
 
@@ -162,7 +164,7 @@ $(document).ready(function () {
 					if (item.month == monthNames[month - 1] && item.day <= dayAdhan) {
 						if (!maxItem || maxItem.day < item.day) {
 							maxItem = item;
-						}						
+						}
 					}
 				});
 				
@@ -198,22 +200,20 @@ $(document).ready(function () {
 	function ReadConfig() {
 		var urlConfig = "data/config.json";
 		$.getJSON(urlConfig,
-			function (data) {
-				$.each(data, function (i, item) {
-					configObj.Quran = item.Quran;
-					configObj.AllDay = item.AllDay;
-				}
-					);
-			}).fail(function (jqxhr, textStatus, error) {
+		function (data) {
+			$.each(data, function (i, item) {
+				configObj.Quran = item.Quran;
+				configObj.AllDay = item.AllDay;
+				configObj.Hanafi = item.Hanafi;
+			});
+		}).fail(function (jqxhr, textStatus, error) {
 			var err = textStatus + ', ' + error;
 			console.log("Request Failed: " + err);
 		});
-		return configObj;
 	}
 
-
 	function SetHadees() {
-		if (configValue.Quran == 1) {
+		if (configObj.Quran == 1) {
 			SetQuranAyah();
 		}
 		else {
@@ -234,7 +234,7 @@ $(document).ready(function () {
 							break;
 
 						case "ALLDAY":
-							if (configValue.AllDay == 1) $(".hadith").html(divsStr.replace("*ICOE*", salahStr[1]));
+							if (configObj.AllDay == 1) $(".hadith").html(divsStr.replace("*ICOE*", salahStr[1]));
 							break;
 
 						case "FAJR":
