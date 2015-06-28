@@ -476,3 +476,60 @@ ul li {
         text-shadow: 0 0 20px #00c6ff;
     };
 }
+
+img.center {   display: block;   margin-left: auto;   margin-right: auto; }
+      		#dt_en{	float:left; width:33%;}
+      		#bis{	float:left; width:33%;}
+      		#dt_ar{float:right; width:33%; text-align:right;}
+      		.darkCol{background-image:url(/img/bg1.png); background-color:#0A0A2A; height:300px; font-size:20em; color:#F4FA58; border:4px solid #333; box-shadow: 0 2px 15px 12px #888888; }
+      		.liteCol{ background-image:url(/img/bg211.png);background-color:#0A0A2A; height:300px;font-size:20em; color:#F4FA58;  }
+      		.jummah{ background-image:url(/img/bg2.png);background-color:#0A0A2A;  width:100%; height:300px; font-size:16em; float:left; color:#F4FA58; box-shadow: 0 2px 15px 12px #888888;font-weight:bold; }
+      		.hadithDiv{width:100%; font-size:18em; color:#F2F5A9; line-height:350px;text-align:center; float:left;}
+      	#box_ct
+      	{
+      	  margin: 0 auto;
+      	  background: #ddd;
+      	  -moz-border-radius: 8px;
+      	  border-radius: 8px;
+      	/*  padding: 2em 1.5em; */
+      	  color: rgba(0,0,0, .8);
+      	  text-shadow: 0 1px 0 #fff;
+      	  line-height: 1;
+      
+      	  border:3px #000 solid;
+      	  font-size:1.5em;
+      	  text-align:center;
+      
+      	}
+      
+      	.sun {font-size:20em; color:#F4FA58; text-align:left; vertical-align:middle;font-weight:bold;}
+      	.header{text-align: center;}
+      	#clock { background-image:url(/img/bg212.png); margin:0 auto; padding:30px; border:1px solid #333; color:#F2F5A9;  background-color:#0A0A2A; box-shadow: 0 2px 15px 12px #888888; height:500px; }
+      	#Date { font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; font-size:36px; text-align:center; text-shadow:0 0 5px #00c6ff; }
+      	ul {  width:1624px; margin:0 auto; padding:0px; padding-top:250px; list-style:none; text-align:center; }
+      	ul li { display:inline; font-size:50em; text-align:center; font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif; text-shadow:0 0 5px #00c6ff; }
+      	#point { position:relative; -moz-animation:mymove 1s ease infinite; -webkit-animation:mymove 1s ease infinite; padding-left:10px; padding-right:10px; }
+      
+      	@-webkit-keyframes mymove
+      	{
+      	0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+      	50% {opacity:0; text-shadow:none; }
+      	100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }
+      	}
+            
+      	@-moz-keyframes mymove
+      	{
+      	0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+      	50% {opacity:0; text-shadow:none; }
+      	100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }
+      	}
+      	.header{margin:0 auto; background-color:#0A0A2A;}
+      	.clear {height:60px; }
+      	#sunrise {display:inline; float:left;padding-left:25px;}
+      	#box_date{display:inline; float:right;padding-right:25px;}
+      	#container{width:100%; margin-top:25px;}
+      	#left{float:left; margin-top:275px;  padding-left:25px;}
+      	#right{float:right; margin-top:1px; font-size:2em; padding-right:25px;text-align:right;}
+          #todaysDate{ font-size:7em; color:#F2F5A9; line-height:1.5; text-align:left; min-height:55px;margin-top:1px;}
+          #todaysIslamicDate{ font-size:8em; color:#F2F5A9; line-height:1.5; text-align:left; min-height:75px;}
+      	#center{margin:0 auto; }
